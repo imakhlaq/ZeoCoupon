@@ -1,19 +1,15 @@
-import { signinUser } from "@/actions/users";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FaGithub } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 
-export default async function SignupPage() {
+export default function page() {
   return (
-    <div className="mt-[15%] max-w-md  mx-auto rounded-sm md:rounded-2xl p-4 md:p-8 shadow-input bg-white border border-[#121212] dark:bg-black container">
+    <div className=" container max-w-md mt-[15%] flex flex-col gap-5">
       <h2>Welcome To ZeoCoupon</h2>
-
-      <form action={signinUser} className="flex flex-col gap-5">
-        <Label htmlFor="email">
-          Email
-          <Input id="email" type="email" name="email"></Input>
-        </Label>
+      <form className="flex flex-col gap-5">
         <Label htmlFor="username">
           Username
           <Input
@@ -30,8 +26,21 @@ export default async function SignupPage() {
         <Button type="submit">Submit</Button>
       </form>
       <p>
-        Already have an account? <Link href={"/login"}>Login</Link>
+        Don&apos;t have an account? <Link href={"/signup"}>Login</Link>
       </p>
+
+      <div>
+        <form className="flex gap-5 justify-center">
+          <Button className="">
+            <FaGithub className="" />
+            <p>Github</p>
+          </Button>
+          <Button>
+            <FaGoogle />
+            <p>Google</p>
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
