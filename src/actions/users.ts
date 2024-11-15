@@ -2,6 +2,9 @@
 
 import connectToMongo from "@/lib/db";
 import { User } from "@/model/users";
+import { log } from "console";
+import { redirect } from "next/navigation";
+import bcrypt from "bcryptjs";
 
 export async function signinUser(formData: FormData) {
   const email = formData.get("email") as string;
@@ -20,4 +23,11 @@ export async function signinUser(formData: FormData) {
 
   const isUsernameTaken = await User.findOne({ username });
   if (isUsernameTaken) throw new Error("Email is already registered");
+
+  const hasedPass = await bcrypt.hash(password, 10);
+
+  await User.create({ email, username, hasedPass });
+  log("User created successfully");
+
+  redirect("/login");
 }
