@@ -5,11 +5,13 @@ import Link from "next/link";
 import { signInAction } from "@/actions/users";
 import SocalLogin from "../social/socallogin";
 import { auth } from "@/auth";
-import { log } from "console";
+import { redirect } from "next/navigation";
 
 export default async function page() {
   const session = await auth(); //to get access user session inside a server componet
-  log({ session });
+  //simple route protection
+  const user = session?.user;
+  if (user) redirect("/");
 
   return (
     <div className=" container max-w-md mt-[15%] flex flex-col gap-5">

@@ -8,14 +8,22 @@ import Google from "next-auth/providers/google";
 import { log } from "console";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true, //stop next auth from using localhost in magic url
+  secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: "jwt", //"databse" will be used to store user session to db
+    maxAge: 30 * 24 * 60 * 60, //max signed in allowed
+  },
   providers: [
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true, //allows user to sign in with same email if they have already signIn with google it will merge both of them
     }),
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     //for username and pass
     Credentials({

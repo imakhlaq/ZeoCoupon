@@ -8,6 +8,10 @@ import bcrypt from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
 import { signIn } from "@/auth";
 
+/*
+NOTE: You can call the server actions from inside a client components to just like server compoents.
+*/
+
 //creating user by email and pass
 //You can also create an endpoint that can do this instead of server actions
 export async function signinUser(formData: FormData) {
