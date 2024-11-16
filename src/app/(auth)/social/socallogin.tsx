@@ -19,13 +19,13 @@ eg:
 const SocalLogin = () => {
   return (
     <div className="flex gap-5 justify-center">
-      <form action={handleGithubSignIn}>
+      <form action={handleGithubSignIn} className="">
         <Button className="">
           <FaGithub className="" />
           <p>Github</p>
         </Button>
       </form>
-      <form action={handleGoogleSignIn}>
+      <form action={handleGoogleSignIn} className="">
         <Button>
           <FaGoogle />
           <p>Google</p>

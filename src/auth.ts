@@ -85,6 +85,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     //here were are disbaling the nextauth default signin page("/api/auth/signin") and instead using our own.
     signIn: "/login",
+    // error: "/auth/auth-error",
+    // verifyRequest: "/auth/auth-success",
   },
 
   callbacks: {
