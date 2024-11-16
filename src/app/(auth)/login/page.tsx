@@ -1,15 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FaGithub } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
+import { signInAction } from "@/actions/users";
+import SocalLogin from "../social/socallogin";
+import { auth } from "@/auth";
+import { log } from "console";
 
-export default function page() {
+export default async function page() {
+  const session = await auth(); //to get access user session inside a server componet
+  log({ session });
+
   return (
     <div className=" container max-w-md mt-[15%] flex flex-col gap-5">
       <h2>Welcome To ZeoCoupon</h2>
-      <form className="flex flex-col gap-5">
+      {/* using server actions to grab the form data and making db calls i.e server stuff */}
+      <form action={signInAction} className="flex flex-col gap-5">
         <Label htmlFor="username">
           Username
           <Input
@@ -28,19 +34,7 @@ export default function page() {
       <p>
         Don&apos;t have an account? <Link href={"/signup"}>Login</Link>
       </p>
-
-      <div>
-        <form className="flex gap-5 justify-center">
-          <Button className="">
-            <FaGithub className="" />
-            <p>Github</p>
-          </Button>
-          <Button>
-            <FaGoogle />
-            <p>Google</p>
-          </Button>
-        </form>
-      </div>
+      <SocalLogin />
     </div>
   );
 }

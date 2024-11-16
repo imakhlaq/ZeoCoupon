@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import SocalLogin from "../social/socallogin";
 
 export default async function SignupPage() {
   return (
@@ -32,6 +33,7 @@ export default async function SignupPage() {
       <p>
         Already have an account? <Link href={"/login"}>Login</Link>
       </p>
+      <SocalLogin />
     </div>
   );
 }
