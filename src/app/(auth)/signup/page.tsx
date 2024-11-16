@@ -7,7 +7,7 @@ import SocalLogin from "../social/socallogin";
 
 export default async function SignupPage() {
   return (
-    <div className="mt-[15%] max-w-md  mx-auto rounded-sm md:rounded-2xl p-4 md:p-8 shadow-input bg-white border border-[#121212] dark:bg-black container">
+    <div className="flex flex-col min-h-[100vh] items-center justify-center gap-5  max-w-md  mx-auto rounded-sm md:rounded-2xl p-4 md:p-8 shadow-input bg-white border border-[#121212] dark:bg-black container">
       <h2>Welcome To ZeoCoupon</h2>
 
       <form action={signinUser} className="flex flex-col gap-5">

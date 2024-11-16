@@ -14,7 +14,7 @@ export default async function page() {
   if (user) redirect("/");
 
   return (
-    <div className=" container max-w-md mt-[15%] flex flex-col gap-5">
+    <div className=" flex flex-col min-h-[100vh] items-center justify-center gap-5 ">
       <h2>Welcome To ZeoCoupon</h2>
       {/* using server actions to grab the form data and making db calls i.e server stuff */}
       <form action={signInAction} className="flex flex-col gap-5">

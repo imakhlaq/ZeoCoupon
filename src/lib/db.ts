@@ -8,7 +8,7 @@ async function connectToMongo() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.log(`Error: ${error.message}`);
-    process.exit(1); //if connection is not successfull shutdown the app
+    // process.exit(1); //if connection is not successfull shutdown the app
   }
 }
 

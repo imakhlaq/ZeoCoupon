@@ -17,8 +17,8 @@ declare module "next-auth" {
   interface Session {
     user: User & {
       id: UserId;
-      role: string;
-      username: string;
+      role: Role;
+      username: Username;
     };
   }
 }
@@ -26,7 +26,7 @@ declare module "next-auth" {
 declare module "next-auth" {
   interface User {
     id: UserId;
-    role: string;
-    username: string;
+    role: Role;
+    username: Username;
   }
 }

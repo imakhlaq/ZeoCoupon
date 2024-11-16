@@ -5,11 +5,10 @@ import { User } from "./model/users";
 import { compare } from "bcryptjs";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-import { log } from "console";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true, //stop next auth from using localhost in magic url
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET, // to sign jwt
   session: {
     strategy: "jwt", //"databse" will be used to store user session to db
     maxAge: 30 * 24 * 60 * 60, //max signed in allowed
@@ -25,6 +24,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
+
+    /*     //node mailer for mails to varify the emails
+    Nodemailer({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: Number(process.env.EMAIL_SERVER_PORT),
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+        from: process.env.EMAIL_FROM,
+      },
+    }), */
+
     //for username and pass
     Credentials({
       name: "credentials",
@@ -79,6 +92,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     //return object will be treated as a token that contains every data needed to be injected in jwt
     //-----------------| this user object is returned by providers from above (google, github and credentials authorize function)
     async jwt({ token, user }) {
+      //you can even get multiple type of envents here or check if something in token is diffrent than session by accessing session etc
+
       if (user) {
         token.role = user.role;
         token.username = user.username;
@@ -117,7 +132,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return true;
           }
         } catch (error) {
-          log(error);
+          console.log(error);
           throw new Error(`"Error while creating user"`);
         }
       }
