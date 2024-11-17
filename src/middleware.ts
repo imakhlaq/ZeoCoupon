@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 const privateRoutes = ["/dashboard"];
 
-auth(async function (req) {
+export default auth(async function (req) {
   const pathName = req.nextUrl.pathname;
   const isPrivate = privateRoutes.some((path) => path.startsWith(pathName));
   const authInfo = await auth();
@@ -28,4 +28,3 @@ auth(async function (req) {
 export const config = {
   matcher: ["/", "/login", "/dashboard/:path*"],
 };
-export { auth as middleware } from "@/auth";
