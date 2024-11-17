@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { signInAction } from "@/actions/users";
-import SocalLogin from "../social/socallogin";
+import SocalLogin from "../_components/SocialLogin";
 /* import { auth } from "@/auth";
 import { redirect } from "next/navigation";
  */

@@ -90,13 +90,41 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <footer className=" container pt-16 pb-8 flex sm:flex-col gap-8 sm:gap-4 justify-between items-center">
+      <footer className="container pt-16 pb-8 flex sm:flex-row flex-col gap-8 sm:gap-4 justify-between items-center">
         <Link href={"/"}>
           <BrandLogo />
         </Link>
 
         <div className="flex flex-col sm:flex-row gap-8">
-          <div className="flex flex-col gap-8"></div>
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "Zeo Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+          </div>
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Integration"
+              links={[
+                { label: "Stripe", href: "#" },
+                { label: "Paddle", href: "#" },
+                { label: "Paddle", href: "#" },
+              ]}
+            />
+          </div>
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "Super Charge", href: "#" },
+                { label: "Gamuty", href: "#" },
+                { label: "Paddle", href: "#" },
+              ]}
+            />
+          </div>
         </div>
       </footer>
     </>
@@ -161,6 +189,27 @@ function Feature({
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <CheckIcon className="size-4 stroke-accent bg-accent/25 rounded-full p-0.5" />
+    </div>
+  );
+}
+
+function FooterLinkGroup({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="font-semibold">{title}</div>
+      <ul className="flex flex-col gap-2 text-sm">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href}>{link.label}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
