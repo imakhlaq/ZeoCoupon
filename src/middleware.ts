@@ -26,5 +26,5 @@ export default auth(async function (req) {
 });
 
 export const config = {
-  matcher: ["/", "/login", "/dashboard/:path*"],
+  matcher: ["/login", "/dashboard/:path*"],
 };
