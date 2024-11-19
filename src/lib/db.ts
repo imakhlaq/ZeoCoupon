@@ -1,8 +1,9 @@
+import { env } from "@/config/env/server";
 import mongoose from "mongoose";
 
 async function connectToMongo() {
   try {
-    await mongoose.connect(process.env.MONGO_URI!);
+    await mongoose.connect(env.MONGO_URI);
     console.log(`Connected to mongoDB`);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
