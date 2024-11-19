@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { date } from "zod";
 
 const usersSchema = new mongoose.Schema({
   username: { type: String, require: true },
@@ -10,6 +11,7 @@ const usersSchema = new mongoose.Schema({
   //from google or github
   authProviderId: { type: String },
 });
+console.log(date);
 
 export const User =
   mongoose.models?.User || mongoose.model("User", usersSchema);
