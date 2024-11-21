@@ -5,6 +5,7 @@ import { User } from "./model/users";
 import { compare } from "bcryptjs";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+import { createSubscription } from "./server/db/subscription";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true, //stop next auth from using localhost in magic url
@@ -117,7 +118,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     //this will be called when user try to sign in
     signIn: async function ({ user, account }) {
-      if (account?.provider === "google") {
+      if (account?.provider === "google" || account?.provider === "github") {
         try {
           const { email, name, image, id } = user;
 
@@ -129,6 +130,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           //it has not been used previously then we create a user record in DB
           if (!isUserExits) {
             await User.create({ email, name, image, authProviderId: id });
+
+            //because i have a neon db also
+            await createSubscription({ authUserId: id!, tier: "Free" });
           } else {
             //else we return true to grant user access
             return true;
