@@ -2,7 +2,6 @@
 
 import { auth } from "@/auth";
 import { productDetailSchema } from "@/zod_schemas/product";
-import { error } from "console";
 import { z } from "zod";
 
 export async function createProduct(
