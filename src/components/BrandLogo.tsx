@@ -1,7 +1,7 @@
 import { Globe2Icon } from "lucide-react";
 function BrandLogo() {
 
-    console.log("Test")
+    adadadadconsole.log("Test")
   return (
     <span className="flex items-center gap-2 font-semibold flex-shrink-0 text-lg">
       <Globe2Icon className="size-8" />
@@ -11,3 +11,4 @@ function BrandLogo() {
 }
 
 export default BrandLogo;
+dadadad
